@@ -1,0 +1,16 @@
+from openpyxl import load_workbook
+
+wb = load_workbook('sagatave_eksamenam.xlsx')
+ws = wb['Lapa_0']
+
+count = 0
+
+for row in range(4, ws.max_row + 1):
+    address = ws[f'D{row}'].value
+    city = ws[f'E{row}'].value
+
+    if address and city:
+        if "Adulienas iela" in address and city in ["Valmiera", "Saulkrasti"]:
+            count += 1
+
+print(count)
