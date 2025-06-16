@@ -1,0 +1,19 @@
+from openpyxl import load_workbook
+import math
+
+wb = load_workbook('sagatave_eksamenam.xlsx')
+ws = wb['Lapa_0']
+
+total_price = 0
+count = 0
+
+for row in range(4, ws.max_row + 1):
+    product = ws[f'I{row}'].value
+    price = ws[f'K{row}'].value
+
+    if product and "LaserJet" in product and isinstance(price, (int, float)):
+        total_price += price
+        count += 1
+
+average_price = math.floor(total_price / count) if count > 0 else 0
+print(average_price)
